@@ -16,3 +16,11 @@
        (update account :balance (partial a/withdraw amount))
        account))
    accounts))
+
+(defn set-state [accounts id state]
+  (mapv
+   (fn [account]
+     (if (= id (:id account))
+       (update account :state (constantly state))
+       account))
+   accounts))
